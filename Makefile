@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOCKER_BE = top-symfony-be
+DOCKER_FE = top-angular-frontend
 OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
@@ -46,6 +47,9 @@ be-logs: ## Tails the Symfony dev log
 
 ssh-be: ## ssh's into the be container
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bash
+
+ssh-fe: ## ssh's into the be container
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_FE} bash
 
 code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony

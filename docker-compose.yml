@@ -5,9 +5,6 @@
 # chmod 600 ./docker/ssh/id_rsa
 # docker exec -it -u appuser top-symfony-be bin/console <instrucción>
 
-
-
-
 version: '3.5'
 
 services:
@@ -65,14 +62,10 @@ services:
 
   top-angular-frontend:
     container_name: top-angular-frontend
-    image: notideh/node-angular:latest-8.3.26
+    image: 'my-angular-app'
+    build: '.'
     ports:
-      - "127.0.0.13:443:4200"
-    volumes:
-      - ./frontend:/usr/src:delegated
-    command: ./ng-init.sh
-    environment:
-      - npm_config_fetch-retry-maxtimeout=600000
+      - 3000:80
 
 volumes:
   top-symfony-db-data:
